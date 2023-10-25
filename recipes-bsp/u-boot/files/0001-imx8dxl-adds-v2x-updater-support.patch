@@ -1,0 +1,67 @@
+Modified by Copyright 2023 NXP
+From 89fd7769aa8168a5b41d41e44f71641b8ca4d75b Mon Sep 17 00:00:00 2001
+From: pferrao <pedro.ferrao@strypes.pt>
+Date: Fri, 16 Dec 2022 12:00:38 +0000
+Subject: [PATCH 1/3] imx8dxl: adds v2x updater support
+
+diff --git a/configs/imx8dxl_evk_defconfig b/configs/imx8dxl_evk_defconfig
+index 89818aad5e..aa6858f768 100644
+--- a/configs/imx8dxl_evk_defconfig
++++ b/configs/imx8dxl_evk_defconfig
+@@ -34,7 +34,7 @@ CONFIG_OF_BOARD_SETUP=y
+ CONFIG_OF_SYSTEM_SETUP=y
+ CONFIG_BOOTDELAY=3
+ CONFIG_USE_BOOTCOMMAND=y
+-CONFIG_BOOTCOMMAND="mmc dev ${mmcdev}; if mmc rescan; then if run loadbootscript; then run bootscript; else if test ${sec_boot} = yes; then if run loadcntr; then run mmcboot; else run netboot; fi; else if run loadimage; then run mmcboot; else run netboot; fi; fi; fi; else booti ${loadaddr} - ${fdt_addr}; fi"
++CONFIG_BOOTCOMMAND="run default_bootcmd"
+ CONFIG_LOG=y
+ CONFIG_BOARD_EARLY_INIT_F=y
+ CONFIG_SPL_MAX_SIZE=0x20000
+@@ -165,8 +165,8 @@ CONFIG_USB_GADGET=y
+ CONFIG_CI_UDC=y
+ CONFIG_USB_GADGET_DOWNLOAD=y
+ CONFIG_USB_GADGET_MANUFACTURER="FSL"
+-CONFIG_USB_GADGET_VENDOR_NUM=0x1fc9
+-CONFIG_USB_GADGET_PRODUCT_NUM=0x0152
++CONFIG_USB_GADGET_VENDOR_NUM=0x0525
++CONFIG_USB_GADGET_PRODUCT_NUM=0xa4a5
+ 
+ CONFIG_FASTBOOT=y
+ CONFIG_USB_FUNCTION_FASTBOOT=y
+diff --git a/include/configs/imx8dxl_evk.h b/include/configs/imx8dxl_evk.h
+index 2ec3024746..8ff97ebde4 100644
+--- a/include/configs/imx8dxl_evk.h
++++ b/include/configs/imx8dxl_evk.h
+@@ -172,7 +172,31 @@
+ 			"else " \
+ 				"booti; " \
+ 			"fi;" \
+-		"fi;\0"
++		"fi;\0"  \
++       "default_bootcmd=" \
++               "mmc dev ${mmcdev}; if mmc rescan; then " \
++                       "if run loadbootscript; then " \
++                               "run bootscript; " \
++                       "else " \
++                               "if test ${sec_boot} = yes; then " \
++                                       "if run loadcntr; then " \
++                                               "run mmcboot; " \
++                                       "else run netboot; " \
++                                       "fi; " \
++                               "else " \
++                                       "if run loadimage; then " \
++                                               "run mmcboot; " \
++                                       "else run netboot; " \
++                                       "fi; " \
++                        "fi; " \
++                       "fi; " \
++               "else booti ${loadaddr} - ${fdt_addr}; fi\0" \
++       "boot_fastboot_from_linux=" \
++               "setenv bootdelay 3; " \
++               "setenv bootcmd run default_bootcmd; " \
++               "savee; " \
++               "fastboot 0;" \
++               "reset\0"
+ #endif
+ 
+ /* Link Definitions */

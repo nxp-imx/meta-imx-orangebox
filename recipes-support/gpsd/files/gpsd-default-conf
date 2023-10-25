@@ -1,0 +1,4 @@
+START_DAEMON="TRUE"
+GPSD_SOCKET="/var/run/gpsd.sock"
+GPSD_OPTIONS="-nrG"
+DEVICES="/dev/ttyUSB3"

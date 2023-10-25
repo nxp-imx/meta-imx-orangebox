@@ -1,0 +1,22 @@
+#! /bin/bash
+
+# GPIO to be used as source of PPS (-1 to no PPS)
+PPS_GPIO=-1
+
+if [ "${PPS_GPIO}" != "-1" ]; then
+
+        # check if pps_gpio needs to be re-inserted
+        lsmod | grep pps_gpio > /dev/null 2>&1
+        if [ "$?" != "0" ] ; then
+                insmod /lib/modules/$(uname -r)/kernel/drivers/pps/clients/pps-gpio.ko gpio=${PPS_GPIO}
+        fi
+
+        # create a link to the configuration with PPS
+        ln -f /etc/chrony_pps.conf /etc/chrony.conf
+else
+
+        # create a link to the configuration without PPS
+        ln -f /etc/chrony_nopps.conf /etc/chrony.conf
+fi
+
+return 0 2> /dev/null || exit 0

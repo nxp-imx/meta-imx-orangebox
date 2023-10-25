@@ -1,0 +1,21 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+dev=/dev/ttyLP3
+ANT_EN="\xb5\x62\x06\x8a\x1d\x00\x00\x01\x00\x00\x2e\x00\xa3\x10\x01\x2f\x00\xa3\x10\x01\x31\x00\xa3\x10\x01\x33\x00\xa3\x10\x01\x35\x00\xa3\x10\x01\x28\x0f" stty -F $dev 38400 raw -echo
+echo -ne $ANT_EN > $dev
+ 
+sxf1800_check --update
+
+exit 0
+
