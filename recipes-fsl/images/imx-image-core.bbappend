@@ -16,5 +16,6 @@ IMAGE_INSTALL += " \
     obx-imx-ipc \
     obx-statstool \
     lmsensors \
+    greengrass-bin \
 "
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "" ,d)}"
