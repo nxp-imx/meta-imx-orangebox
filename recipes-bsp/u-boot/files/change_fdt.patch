@@ -1,0 +1,13 @@
+diff --git a/include/configs/imx8dxl_orangebox.h b/include/configs/imx8dxl_orangebox.h
+index 4250e0e052..d7c87fc6b6 100644
+--- a/include/configs/imx8dxl_orangebox.h
++++ b/include/configs/imx8dxl_orangebox.h
+@@ -64,7 +64,7 @@
+ 	"image=Image\0" \
+ 	"splashimage=0x9e000000\0" \
+ 	"console=ttyLP0\0" \
+-	"fdt_addr=0x83000000\0"			\
++	"fdt_addr=0x830c0000\0"			\
+ 	"fdt_high=0xffffffffffffffff\0"		\
+ 	"cntr_addr=0x98000000\0"			\
+ 	"cntr_file=os_cntr_signed.bin\0" \
