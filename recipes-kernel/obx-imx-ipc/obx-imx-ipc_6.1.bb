@@ -7,6 +7,8 @@ S = "${WORKDIR}/git"
 SRC_URI = "git://github.com/nxp-imx/obx_imx_ipc.git;protocol=https;branch=v1.0"
 SRCREV = "74fac05c0fcb3ef7b478571427f76c12f1f0d416"
 
+do_configure[depends] += "virtual/kernel:do_shared_workdir"
+
 do_compile:prepend(){
 install -d ${STAGING_KERNEL_DIR}/tools/obx_imx
 cp -r ${S}/* ${STAGING_KERNEL_DIR}/tools/obx_imx
