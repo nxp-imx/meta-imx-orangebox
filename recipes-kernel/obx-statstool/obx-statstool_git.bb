@@ -7,6 +7,8 @@ S = "${WORKDIR}/git"
 SRC_URI = "git://github.com/nxp-imx/obx_statstool.git;protocol=https;branch=v1.0"
 SRCREV = "3a76c4f3f3c47d935d5bd6d483f6a2bb260d846a"
 
+do_configure[depends] += "virtual/kernel:do_shared_workdir"
+
 do_compile:prepend(){
 cp -r ${S}/../git/ ${STAGING_KERNEL_DIR}/tools/
 cd ${STAGING_KERNEL_DIR}/tools/git
