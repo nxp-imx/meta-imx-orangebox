@@ -1,6 +1,6 @@
 # Copyright NXP 2023
 LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://README.md;md5=e031e8d84e8210787f587ecc69bb0736"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 S = "${WORKDIR}/git"
 
