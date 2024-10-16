@@ -1,5 +1,5 @@
 # Copyright NXP 2023
-LICENSE = "BSD 3 Clause"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=0858ec9c7a80c4a2cf16e4f825a2cc91"
 
 S = "${WORKDIR}/git"
