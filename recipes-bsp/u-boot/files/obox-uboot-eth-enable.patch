@@ -1,0 +1,96 @@
+diff --git a/arch/arm/dts/fsl-imx8dxl-orangebox.dts b/arch/arm/dts/fsl-imx8dxl-orangebox.dts
+index f809336a4c0..7b317b17d5f 100644
+--- a/arch/arm/dts/fsl-imx8dxl-orangebox.dts
++++ b/arch/arm/dts/fsl-imx8dxl-orangebox.dts
+@@ -176,6 +176,27 @@
+ 			>;
+ 		};
+ 
++		pinctrl_fec1: fec1grp {
++			fsl,pins = <
++				SC_P_COMP_CTL_GPIO_1V8_3V3_ENET_ENETB0_PAD	0x000014a0
++				SC_P_COMP_CTL_GPIO_1V8_3V3_ENET_ENETB1_PAD	0x000014a0
++				SC_P_ENET0_MDC_CONN_ENET0_MDC				0x06000020
++				SC_P_ENET0_MDIO_CONN_ENET0_MDIO				0x06000020
++				SC_P_ENET0_RGMII_TX_CTL_CONN_ENET0_RGMII_TX_CTL		0x00000060
++				SC_P_ENET0_RGMII_TXC_CONN_ENET0_RGMII_TXC		0x00000061
++				SC_P_ENET0_RGMII_TXD0_CONN_ENET0_RGMII_TXD0		0x00000060
++				SC_P_ENET0_RGMII_TXD1_CONN_ENET0_RGMII_TXD1		0x00000060
++				SC_P_ENET0_RGMII_TXD2_CONN_ENET0_RGMII_TXD2		0x00000060
++				SC_P_ENET0_RGMII_TXD3_CONN_ENET0_RGMII_TXD3		0x00000060
++				SC_P_ENET0_RGMII_RXC_CONN_ENET0_RGMII_RXC		0x00000060
++				SC_P_ENET0_RGMII_RX_CTL_CONN_ENET0_RGMII_RX_CTL		0x00000060
++				SC_P_ENET0_RGMII_RXD0_CONN_ENET0_RGMII_RXD0		0x00000060
++				SC_P_ENET0_RGMII_RXD1_CONN_ENET0_RGMII_RXD1		0x00000060
++				SC_P_ENET0_RGMII_RXD2_CONN_ENET0_RGMII_RXD2		0x00000060
++				SC_P_ENET0_RGMII_RXD3_CONN_ENET0_RGMII_RXD3		0x00000060
++			>;
++		};
++
+ 		pinctrl_flexspi0: flexspi0grp {
+ 			fsl,pins = <
+ 				SC_P_QSPI0A_DATA0_LSIO_QSPI0A_DATA0		0x06000021
+@@ -264,6 +285,13 @@
+ 		#interrupt-cells = <2>;
+ 		interrupt-parent = <&gpio2>;
+ 		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
++
++		fec1_select_hog: fec1-select-hog {
++			gpio-hog;
++			gpios = <13 GPIO_ACTIVE_LOW>;
++			output-high;
++			line-name = "fec1_select";
++		};
+ 	};
+ };
+ 
+@@ -303,7 +331,35 @@
+ 	cd-gpios = <&pcal6524_i2c0_x22 7 GPIO_ACTIVE_LOW>;
+ 	vqmmc-supply = <&reg_usdhc2_vqmmc>;
+ 	max-frequency = <100000000>;
++	status = "disabled";
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec1>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy1>;
++	fsl,magic-packet;
++	phy-reset-gpios = <&pcal6524_i2c0_x22 20 GPIO_ACTIVE_LOW>;
++	phy-reset-duration = <10>;
++	phy-reset-post-delay = <150>;
++	assigned-clocks = <&clk IMX8QXP_ENET0_REF_DIV>;
++	assigned-clock-rates = <125000000>;
+ 	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy1: ethernet-phy@1 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			interrupt-parent = <&pcal6524_i2c0_x23>;
++			interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
++			reg = <1>;
++			realtek,clkout-disable;
++		};
++
++	};
+ };
+ 
+ &usbotg1 {
+diff --git a/configs/imx8dxl_orangebox_defconfig b/configs/imx8dxl_orangebox_defconfig
+index 87803b8e76d..8267226bb79 100644
+--- a/configs/imx8dxl_orangebox_defconfig
++++ b/configs/imx8dxl_orangebox_defconfig
+@@ -22,6 +22,8 @@ CONFIG_SPL_DM_SEQ_ALIAS=y
+ CONFIG_SPL_SERIAL=y
+ CONFIG_SPL_DRIVERS_MISC=y
+ CONFIG_SPL=y
++CONFIG_GPIO_HOG=y
++CONFIG_PHY_REALTEK=y
+ CONFIG_SPL_LOAD_IMX_CONTAINER=y
+ CONFIG_USE_TINY_PRINTF=y
+ CONFIG_PANIC_HANG=y
+
