@@ -3,7 +3,6 @@ SUMMARY     = "AWS IoT Greengrass Nucleus - Binary Distribution"
 DESCRIPTION = ""
 LICENSE     = "Apache-2.0"
 
-S                          = "${WORKDIR}"
 GG_BASENAME                = "greengrass/v2"
 GG_ROOT                    = "${D}/${GG_BASENAME}"
 LIC_FILES_CHKSUM           = "file://LICENSE;md5=34400b68072d710fecd0a2940a0d1658"
