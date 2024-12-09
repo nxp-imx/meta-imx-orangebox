@@ -9,7 +9,7 @@ SRC_URI += "file://gpsd-default-conf \
 
 do_install:append() {
     install -d ${D}/${sysconfdir}/default/
-    install -m 0644 ${WORKDIR}/gpsd-default-conf ${D}/${sysconfdir}/default/gpsd.default
+    install -m 0644 ${WORKDIR}/sources-unpack/gpsd-default-conf ${D}/${sysconfdir}/default/gpsd.default
 }
 
 SYSTEMD_SERVICE:${PN} += "${PN}.service"
