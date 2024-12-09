@@ -1,3 +1,5 @@
+Upstream-Status: Pending
+
 diff --git a/arch/arm/dts/fsl-imx8dxl-orangebox.dts b/arch/arm/dts/fsl-imx8dxl-orangebox.dts
 index f809336a4c0..7b317b17d5f 100644
 --- a/arch/arm/dts/fsl-imx8dxl-orangebox.dts

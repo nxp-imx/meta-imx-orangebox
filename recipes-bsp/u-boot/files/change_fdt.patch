@@ -1,3 +1,5 @@
+Upstream-Status: Pending
+
 diff --git a/include/configs/imx8dxl_orangebox.h b/include/configs/imx8dxl_orangebox.h
 index 4250e0e052..d7c87fc6b6 100644
 --- a/include/configs/imx8dxl_orangebox.h
