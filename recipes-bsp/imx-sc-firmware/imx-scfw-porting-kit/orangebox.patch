@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [other]
+
 Index: scfw_export_mx8dxl_a0/platform/board/mx8dxl_ob/Makefile
 ===================================================================
 --- /dev/null
