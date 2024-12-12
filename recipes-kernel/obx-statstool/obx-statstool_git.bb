@@ -1,6 +1,7 @@
-# Copyright NXP 2023
-LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://README.md;md5=0bf5fc50eadb8f71be8a9369fa95af71"
+# Copyright NXP 2023-2024
+
+LICENSE = "GPL-2.0-only"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=0858ec9c7a80c4a2cf16e4f825a2cc91"
 
 S = "${WORKDIR}/git"
 
@@ -18,4 +19,6 @@ do_install(){
 install -d ${D}${bindir}
 install ${STAGING_KERNEL_DIR}/tools/git/obx_system_stats_d ${D}${bindir}/
 install ${STAGING_KERNEL_DIR}/tools/git/obx_stats_cli ${D}${bindir}/
-} 
+}
+
+INSANE_SKIP:${PN}-dbg += "buildpaths"
