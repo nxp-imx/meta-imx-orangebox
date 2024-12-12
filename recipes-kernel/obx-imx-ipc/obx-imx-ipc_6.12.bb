@@ -1,6 +1,7 @@
-# Copyright NXP 2023
-LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://README.md;md5=e031e8d84e8210787f587ecc69bb0736"
+# Copyright NXP 2023-2024
+
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 S = "${WORKDIR}/git"
 
@@ -19,4 +20,6 @@ do_install(){
 install -d ${D}${bindir}
 install ${STAGING_KERNEL_DIR}/tools/obx_imx/obx_imx_s32k_spi_ipc_d ${D}${bindir}/
 install ${STAGING_KERNEL_DIR}/tools/obx_imx/obx_spi_ipc_cli ${D}${bindir}/
-} 
+}
+
+INSANE_SKIP:${PN}-dbg += "buildpaths"
