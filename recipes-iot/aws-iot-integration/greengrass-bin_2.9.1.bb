@@ -28,6 +28,7 @@ do_configure[noexec] = "1"
 do_compile[noexec]   = "1"
 
 do_install() {
+    cp -r ${UNPACKDIR}/* ${WORKDIR}/
     install -d ${GG_ROOT}/config
     install -d ${GG_ROOT}/alts
     install -d ${GG_ROOT}/alts/init
