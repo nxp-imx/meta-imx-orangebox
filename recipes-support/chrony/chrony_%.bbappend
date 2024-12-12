@@ -9,16 +9,16 @@ RDEPENDS:${PN} += "bash"
 do_configure:append() {
 
     # replace the systemd service used by the default recipe
-    cp ${WORKDIR}/chronyd.service               ${S}/examples/chronyd.service
+    cp ${UNPACKDIR}/chronyd.service               ${S}/examples/chronyd.service
 }
 
 do_install:append() {
 
     # configuration files and setup file
     install -d ${D}${sysconfdir}
-    install -m 755 ${WORKDIR}/chrony_setup      ${D}${sysconfdir}
-    install -m 644 ${WORKDIR}/chrony_pps.conf   ${D}${sysconfdir}
-    install -m 644 ${WORKDIR}/chrony_nopps.conf ${D}${sysconfdir}
+    install -m 755 ${UNPACKDIR}/chrony_setup      ${D}${sysconfdir}
+    install -m 644 ${UNPACKDIR}/chrony_pps.conf   ${D}${sysconfdir}
+    install -m 644 ${UNPACKDIR}/chrony_nopps.conf ${D}${sysconfdir}
 
     # fix hard-coded paths in config files and init scripts
     sed -i -e 's!/var/!${localstatedir}/!g' -e 's!/etc/!${sysconfdir}/!g' \
