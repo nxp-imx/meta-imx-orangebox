@@ -5,7 +5,7 @@ LICENSE     = "Apache-2.0"
 
 GG_BASENAME                = "greengrass/v2"
 GG_ROOT                    = "${D}/${GG_BASENAME}"
-LIC_FILES_CHKSUM           = "file://LICENSE;md5=34400b68072d710fecd0a2940a0d1658"
+LIC_FILES_CHKSUM           = "file://${UNPACKDIR}/LICENSE;md5=34400b68072d710fecd0a2940a0d1658"
 SRC_URI                    = "https://d2s8p88vqu9w66.cloudfront.net/releases/greengrass-${PV}.zip;name=payload; \
                               https://raw.githubusercontent.com/aws-greengrass/aws-greengrass-nucleus/main/LICENSE;name=license; \
                               file://greengrassv2-init.yaml \
