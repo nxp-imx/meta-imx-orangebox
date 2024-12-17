@@ -17,5 +17,6 @@ IMAGE_INSTALL += " \
     obx-statstool \
     lmsensors \
     greengrass-bin \
+    alsa-utils-aplay \
 "
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "" ,d)}"
