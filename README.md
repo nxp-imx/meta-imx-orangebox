@@ -11,7 +11,7 @@ See the i.MX Yocto Project User's Guide for instructions on installing repo.
 
 First install the i.MX Linux BSP repo:
 ```
-$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-scarthgap -m imx-6.6.36-2.1.0.xml
+$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-scarthgap -m imx-6.6.36-2.1.0_orangebox.xml
 ```
 
 Download the Yocto Project Layers:
