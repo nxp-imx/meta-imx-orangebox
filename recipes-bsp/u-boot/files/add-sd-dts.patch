@@ -2,8 +2,8 @@ Upstream-Status: Pending
 
 diff -Naur a/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts b/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts
 --- a/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts	1970-01-01 02:00:00.000000000 +0200
-+++ b/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts	2025-02-26 14:17:00.019905633 +0200
-@@ -0,0 +1,331 @@
++++ b/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts	2025-03-03 12:44:52.006841160 +0200
+@@ -0,0 +1,329 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
 + * Copyright 2022 NXP
@@ -270,7 +270,6 @@ diff -Naur a/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts b/arch/arm/dts/fsl-imx8dx
 +		#interrupt-cells = <2>;
 +		interrupt-parent = <&gpio2>;
 +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
-+
 +	};
 +};
 +
@@ -310,8 +309,7 @@ diff -Naur a/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts b/arch/arm/dts/fsl-imx8dx
 +	cd-gpios = <&pcal6524_i2c0_x22 7 GPIO_ACTIVE_LOW>;
 +	vqmmc-supply = <&reg_usdhc2_vqmmc>;
 +	max-frequency = <100000000>;
-+        status = "okay";
-+	};
++	status = "okay";
 +};
 +
 +&usbotg1 {
@@ -337,7 +335,7 @@ diff -Naur a/arch/arm/dts/fsl-imx8dxl-orangebox-sd.dts b/arch/arm/dts/fsl-imx8dx
 +};
 diff -Naur a/configs/imx8dxl_orangebox-sd_defconfig b/configs/imx8dxl_orangebox-sd_defconfig
 --- a/configs/imx8dxl_orangebox-sd_defconfig	1970-01-01 02:00:00.000000000 +0200
-+++ b/configs/imx8dxl_orangebox-sd_defconfig	2025-02-26 14:21:22.989317150 +0200
++++ b/configs/imx8dxl_orangebox-sd_defconfig	2025-03-03 12:45:57.151096201 +0200
 @@ -0,0 +1,204 @@
 +CONFIG_ARM=y
 +CONFIG_ARCH_IMX8=y
