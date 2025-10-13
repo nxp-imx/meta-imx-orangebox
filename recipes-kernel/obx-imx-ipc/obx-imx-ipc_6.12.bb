@@ -1,9 +1,7 @@
-# Copyright NXP 2023-2024
+# Copyright NXP 2023-2025
 
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-
-S = "${WORKDIR}/git"
 
 SRC_URI = "git://github.com/nxp-imx/obx_imx_ipc.git;protocol=https;branch=v1.0"
 SRCREV = "74fac05c0fcb3ef7b478571427f76c12f1f0d416"
