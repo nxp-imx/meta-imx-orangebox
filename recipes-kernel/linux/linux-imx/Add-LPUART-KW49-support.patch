@@ -1,0 +1,46 @@
+Upstream-Status: Pending  [patch-status]
+
+From: Qiang Li <qiang.li@nxp.com>
+
+Add LPUART5 support for imx943 orange box to communicate with KW47.
+
+Signed-off-by: Qiang Li <qiang.li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx943-orangebox.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx943-orangebox.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
+index 87cc5707a745..6dc625165231 100644
+--- a/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
++++ b/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
+@@ -507,6 +507,13 @@ &lpuart1 {
+ 	status = "okay";
+ };
+ 
++&lpuart5 {
++	/* KW47 */
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart5>;
++	status = "okay";
++};
++
+ &lpuart6 {
+ 	/* BT */
+ 	pinctrl-0 = <&pinctrl_uart6>;
+@@ -1034,6 +1041,13 @@ IMX94_PAD_UART1_RXD__LPUART1_RX		0x31e
+ 		>;
+ 	};
+ 
++	pinctrl_uart5: uart5grp {
++		fsl,pins = <
++			IMX94_PAD_GPIO_IO00__LPUART5_TX		0x31e
++			IMX94_PAD_GPIO_IO01__LPUART5_RX		0x31e
++		>;
++	};
++
+ 	pinctrl_uart6: uart6grp {
+ 		fsl,pins = <
+ 			IMX94_PAD_GPIO_IO04__LPUART6_TX		0x31e
+-- 
+2.34.1
+

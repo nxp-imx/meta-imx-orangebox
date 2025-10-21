@@ -1,0 +1,48 @@
+Upstream-Status: Pending [ ] 
+
+From 4974a0d9437ea1a23318b1285fdfc451a00f65a0 Mon Sep 17 00:00:00 2001
+From: Florin Leotescu <florin.leotescu@nxp.com>
+Date: Mon, 13 Oct 2025 14:16:38 +0300
+Subject: [PATCH v2 1/2] LF-16410-1: arm64: defconfig: Enable 5G modem
+Content-Type: text/plain; charset="iso-8859-1"
+
+Enable necessary modem modules
+
+Signed-off-by: Qiang Li <qiang.li@nxp.com>
+Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+---
+ arch/arm64/configs/imx_v8_defconfig | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/configs/imx_v8_defconfig b/arch/arm64/configs/imx_v8_defconfig
+index c26db161c875..38b89ab4dc84 100644
+--- a/arch/arm64/configs/imx_v8_defconfig
++++ b/arch/arm64/configs/imx_v8_defconfig
+@@ -357,6 +357,15 @@ CONFIG_USB_NET_PLUSB=m
+ CONFIG_USB_NET_MCS7830=m
+ CONFIG_USB_NET_CDC_SUBSET=m
+ CONFIG_USB_NET_ZAURUS=m
++CONFIG_USB_NET_QMI_WWAN=m
++CONFIG_USB_WDM=m
++CONFIG_PPP=m
++CONFIG_PPP_FILTER=y
++CONFIG_PPP_MULTILINK=y
++CONFIG_PPP_BSDCOMP=y
++CONFIG_PPP_ASYNC=m
++CONFIG_PPP_SYNC_TTY=m
++CONFIG_PPP_DEFLATE=m
+ CONFIG_WL18XX=m
+ CONFIG_WLCORE_SDIO=m
+ CONFIG_XEN_NETDEV_BACKEND=m
+@@ -771,6 +780,7 @@ CONFIG_USB_SERIAL_GENERIC=y
+ CONFIG_USB_SERIAL_SIMPLE=y
+ CONFIG_USB_SERIAL_CP210X=m
+ CONFIG_USB_SERIAL_FTDI_SIO=y
++CONFIG_USB_SERIAL_WWAN=m
+ CONFIG_USB_SERIAL_OPTION=m
+ CONFIG_USB_TEST=m
+ CONFIG_USB_EHSET_TEST_FIXTURE=y
+-- 
+2.34.1
+
+
