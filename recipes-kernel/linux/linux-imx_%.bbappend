@@ -4,6 +4,7 @@ SRC_URI += "file://Add-5G-modem.patch"
 SRC_URI += "file://Add-LPUART-KW49-support.patch"
 SRC_URI += "file://defconfig-enable-5G-modem.patch"
 SRC_URI += "file://Enable-GNSS-module.patch"
+SRC_URI += "file://Add-Quantum-supoort.patch"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/kconfig:"
 
