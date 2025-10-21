@@ -1,4 +1,10 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+
+SRC_URI += "file://Add-5G-modem.patch"
+SRC_URI += "file://Add-LPUART-KW49-support.patch"
+SRC_URI += "file://defconfig-enable-5G-modem.patch"
+SRC_URI += "file://Enable-GNSS-module.patch"
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/kconfig:"
 
 SRC_URI += "file://set_250hz.cfg"
@@ -27,3 +33,4 @@ DELTA_KERNEL_DEFCONFIG += "enable_kmemleak_and_slab_debug.cfg"
 # enforce copy_defconfig AFTER the patching process
 addtask copy_defconfig after do_patch before do_preconfigure
 addtask merge_delta_config before do_preconfigure after do_copy_defconfig
+
