@@ -16,7 +16,7 @@ UPSTREAM_CHECK_REGEX ?= "releases/tag/v?(?P<pver>\d+(\.\d+)+)"
 
 SRC_URI:append = " file://run-ptest"
 
-S = "${WORKDIR}/${BASE}"
+S = "${UNPACKDIR}/${BASE}"
 
 inherit ptest
 
