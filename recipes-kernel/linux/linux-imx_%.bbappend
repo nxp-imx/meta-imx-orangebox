@@ -1,12 +1,12 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:${THISDIR}/${PN}/kconfig:"
 
-SRC_URI:append:mx943-orangebox = "file://Add-5G-modem.patch \
-                                  file://Add-LPUART-KW49-support.patch \
-                                  file://defconfig-enable-5G-modem.patch \
-                                  file://Enable-GNSS-module.patch \
-                                  file://Add-Quantum-supoort.patch"
-
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/kconfig:"
+SRC_URI:append:imx943-orangebox = " \
+    file://0001-OB-383-arm64-dts-imx943-orangebox-add-LPUART5-suppor.patch \
+    file://0002-OB-385-add-orangebox-qtm.dts-and-update-soc-utils.c-.patch \
+    file://0003-LF-16410-1-arm64-defconfig-Enable-5G-modem.patch \
+    file://0004-LF-16410-2-arm64-dts-imx943-Add-5G-modem.patch \
+    file://0005-LF-16409-arm64-dts-imx943-Enable-GNSS-module.patch \
+"
 
 SRC_URI += "file://set_250hz.cfg"
 SRC_URI += "file://enable_tbf.cfg"
