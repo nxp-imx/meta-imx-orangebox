@@ -1,10 +1,15 @@
-Upstream-Status: Pending  [patch-status]
-
+From ac6c61180b92e1391bc8c88593821b083fcce48f Mon Sep 17 00:00:00 2001
 From: Qiang Li <qiang.li@nxp.com>
+Date: Wed, 22 Oct 2025 10:34:43 +0900
+Subject: [PATCH 1/5] OB-383: arm64: dts: imx943-orangebox: add LPUART5
+ support.
 
 Add LPUART5 support for imx943 orange box to communicate with KW47.
 
 Signed-off-by: Qiang Li <qiang.li@nxp.com>
+
+Upstream-Status: Pending
+
 ---
  arch/arm64/boot/dts/freescale/imx943-orangebox.dts | 14 ++++++++++++++
  1 file changed, 14 insertions(+)

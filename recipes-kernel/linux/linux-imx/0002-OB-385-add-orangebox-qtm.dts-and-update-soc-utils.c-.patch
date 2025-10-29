@@ -1,9 +1,38 @@
-Upstream-Status: Pending []
+From fab9dfaf10e7e8be5075addafe62100aeda5760c Mon Sep 17 00:00:00 2001
+From: ZihengXu <ziheng.xu@nxp.com>
+Date: Fri, 24 Oct 2025 12:34:17 +0900
+Subject: [PATCH 2/5] OB-385: add orangebox-qtm.dts and update soc-utils.c to
+ enable dtb match
 
-diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts
---- a/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts	1970-01-01 01:00:00.000000000 +0100
-+++ b/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts	2025-10-21 13:06:11.856807541 +0200
-@@ -0,0 +1,84 @@
+Signed-off-by: ZihengXu <ziheng.xu@nxp.com>
+
+Upstream-Status: Pending
+
+---
+ arch/arm64/boot/dts/freescale/Makefile        |  1 +
+ .../dts/freescale/imx943-orangebox-qtm.dts    | 87 +++++++++++++++++++
+ sound/soc/soc-utils.c                         |  7 ++
+ 3 files changed, 95 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx943-orangebox-qtm.dts
+
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 0bf63f8fff03..c6e5d2e3972f 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -610,6 +610,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-netc-rpmsg.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox.dtb
+ imx943-orangebox-mic-dtbs := imx943-orangebox.dtb imx943-orangebox-mic.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-mic.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-qtm.dtb
+ 
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-flexspi-m2.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx943-orangebox-qtm.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox-qtm.dts
+new file mode 100644
+index 000000000000..24134824aaa1
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx943-orangebox-qtm.dts
+@@ -0,0 +1,87 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright 2024-2025 NXP
@@ -11,7 +40,7 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts b/arch/a
 +
 +/dts-v1/;
 +
-+#include "imx943-ob2.dts"
++#include "imx943-orangebox.dts"
 +
 +/ {
 +	dummy_radio_codec: dummy_radio_codec {
@@ -32,6 +61,10 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts b/arch/a
 +            sound-dai = <&dummy_radio_codec>;
 +        };
 +    };
++};
++
++&mqs1 {
++    status = "disabled";
 +};
 +
 +&lpspi8 {
@@ -67,7 +100,6 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts b/arch/a
 +};
 +
 +&scmi_iomuxc {
-+	
 +	pinctrl_lpspi8: lpspi8grp {
 +		fsl,pins = <
 +			IMX94_PAD_GPIO_IO12__GPIO2_IO12			0x3fe
@@ -88,21 +120,12 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-quantum.dts b/arch/a
 +	};
 +
 +};
-diff -Naur a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
---- a/arch/arm64/boot/dts/freescale/Makefile	2025-10-21 13:04:24.744136510 +0200
-+++ b/arch/arm64/boot/dts/freescale/Makefile	2025-10-21 13:09:29.074046627 +0200
-@@ -611,6 +611,7 @@
- imx943-orangebox-mic-dtbs := imx943-orangebox.dtb imx943-orangebox-mic.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-mic.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-5G-modem.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-quantum.dts
-
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-flexspi-m2.dtb
-diff -Naur a/sound/soc/soc-utils.c b/sound/soc/soc-utils.c
---- a/sound/soc/soc-utils.c	2025-10-21 12:52:13.619632365 +0200
-+++ b/sound/soc/soc-utils.c	2025-10-21 13:11:55.910971411 +0200
-@@ -21,6 +21,12 @@
+\ No newline at end of file
+diff --git a/sound/soc/soc-utils.c b/sound/soc/soc-utils.c
+index 303823dc45d7..c884de805325 100644
+--- a/sound/soc/soc-utils.c
++++ b/sound/soc/soc-utils.c
+@@ -21,6 +21,12 @@ int snd_soc_calc_frame_size(int sample_size, int channels, int tdm_slots)
  }
  EXPORT_SYMBOL_GPL(snd_soc_calc_frame_size);
  
@@ -115,7 +138,7 @@ diff -Naur a/sound/soc/soc-utils.c b/sound/soc/soc-utils.c
  int snd_soc_params_to_frame_size(const struct snd_pcm_hw_params *params)
  {
  	int sample_size;
-@@ -253,6 +259,7 @@
+@@ -253,6 +259,7 @@ static int snd_soc_dummy_probe(struct platform_device *pdev)
  static struct platform_driver soc_dummy_driver = {
  	.driver = {
  		.name = "snd-soc-dummy",
@@ -123,3 +146,6 @@ diff -Naur a/sound/soc/soc-utils.c b/sound/soc/soc-utils.c
  	},
  	.probe = snd_soc_dummy_probe,
  };
+-- 
+2.34.1
+
