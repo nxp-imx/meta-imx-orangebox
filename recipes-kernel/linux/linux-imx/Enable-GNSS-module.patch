@@ -1,25 +1,25 @@
-From 537431037356d73cc3f3a408daacc2bc489f0866 Mon Sep 17 00:00:00 2001
-From: Qiang Li <qiang.li@nxp.com>
-Date: Wed, 29 Oct 2025 11:21:24 +0900
-Subject: [PATCH 5/5] LF-16409: arm64: dts: imx943: Enable GNSS module
+Upstream-Status: Pending [ ]
+
+From 5a958cbcbfd2da59d6a214b70303381db62d8c89 Mon Sep 17 00:00:00 2001
+From: Florin Leotescu <florin.leotescu@nxp.com>
+Date: Mon, 13 Oct 2025 13:11:46 +0300
+Subject: [PATCH v3] LF-16409: arm64: dts: imx943: Enable GNSS module
+Content-Type: text/plain; charset="iso-8859-1"
 
 Enable UART and I2C communication.
 
 Signed-off-by: Simona Toaca <simona.toaca@nxp.com>
 Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
 Reviewed-by: Peng Fan <peng.fan@nxp.com>
-
-Upstream-Status: Pending
-
 ---
  .../boot/dts/freescale/imx943-orangebox.dts   | 47 +++++++++++++++++++
  1 file changed, 47 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx943-orangebox.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
-index 6dc625165231..cf3a85781c14 100644
+index 4482de91dd25..b8c29ee33f2c 100644
 --- a/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
 +++ b/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
-@@ -467,6 +467,13 @@ &lpi2c4 {
+@@ -441,6 +441,13 @@ &lpi2c4 {
  	pinctrl-0 = <&pinctrl_lpi2c4>;
  	pinctrl-names = "default";
  	status = "okay";
@@ -33,7 +33,7 @@ index 6dc625165231..cf3a85781c14 100644
  };
  
  &lpi2c6 {
-@@ -514,6 +521,20 @@ &lpuart5 {
+@@ -481,6 +488,20 @@ &lpuart1 {
  	status = "okay";
  };
  
@@ -54,7 +54,7 @@ index 6dc625165231..cf3a85781c14 100644
  &lpuart6 {
  	/* BT */
  	pinctrl-0 = <&pinctrl_uart6>;
-@@ -916,6 +937,18 @@ IMX94_PAD_ETH1_TX_ER__GPIO5_IO29	0x31e	/* can2_en */
+@@ -869,6 +890,18 @@ IMX94_PAD_ETH1_TX_ER__GPIO5_IO29	0x31e	/* can2_en */
  		>;
  	};
  
@@ -73,7 +73,7 @@ index 6dc625165231..cf3a85781c14 100644
  	pinctrl_flexcan4: flexcan4grp {
  		fsl,pins = <
  			IMX94_PAD_GPIO_IO36__CAN4_TX		0x39e
-@@ -1048,6 +1081,13 @@ IMX94_PAD_GPIO_IO01__LPUART5_RX		0x31e
+@@ -988,6 +1021,13 @@ IMX94_PAD_UART1_RXD__LPUART1_RX		0x31e
  		>;
  	};
  
@@ -87,7 +87,7 @@ index 6dc625165231..cf3a85781c14 100644
  	pinctrl_uart6: uart6grp {
  		fsl,pins = <
  			IMX94_PAD_GPIO_IO04__LPUART6_TX		0x31e
-@@ -1057,6 +1097,13 @@ IMX94_PAD_GPIO_IO07__LPUART6_RTS_B	0x31e
+@@ -997,6 +1037,13 @@ IMX94_PAD_GPIO_IO07__LPUART6_RTS_B	0x31e
  		>;
  	};
  
@@ -103,4 +103,6 @@ index 6dc625165231..cf3a85781c14 100644
  			IMX94_PAD_SD1_CLK__USDHC1_CLK		0x158e
 -- 
 2.34.1
+
+
 

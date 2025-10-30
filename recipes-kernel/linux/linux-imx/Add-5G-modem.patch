@@ -1,15 +1,15 @@
-From 354457df3e5b6b6f4910dfbd1ccc0a558b937b98 Mon Sep 17 00:00:00 2001
-From: Qiang Li <qiang.li@nxp.com>
-Date: Wed, 29 Oct 2025 11:20:32 +0900
-Subject: [PATCH 4/5] LF-16410-2: arm64: dts: imx943 - Add 5G modem
+Upstream-Status: Pending [ ]
+
+From 18f32f3e8cb2b2c2927ceb2dfe59bfd1984379f3 Mon Sep 17 00:00:00 2001
+From: Florin Leotescu <florin.leotescu@nxp.com>
+Date: Mon, 13 Oct 2025 13:43:48 +0300
+Subject: [PATCH v2 2/2] LF-16410-2: arm64: dts: imx943 - Add 5G modem
+Content-Type: text/plain; charset="iso-8859-1"
 
 Add 5G modem
 
 Signed-off-by: Qiang Li <qiang.li@nxp.com>
 Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
-
-Upstream-Status: Pending
-
 ---
  arch/arm64/boot/dts/freescale/Makefile        |  1 +
  .../freescale/imx943-orangebox-5G-modem.dts   | 86 +++++++++++++++++++
@@ -17,13 +17,13 @@ Upstream-Status: Pending
  create mode 100644 arch/arm64/boot/dts/freescale/imx943-orangebox-5G-modem.dts
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index c6e5d2e3972f..98b6b62ebd64 100644
+index 0bf63f8fff03..a377871de19b 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -611,6 +611,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox.dtb
+@@ -610,6 +610,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-netc-rpmsg.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox.dtb
  imx943-orangebox-mic-dtbs := imx943-orangebox.dtb imx943-orangebox-mic.dtbo
  dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-mic.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-qtm.dtb
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-5G-modem.dtb
  
  dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
@@ -122,4 +122,5 @@ index 000000000000..1933e2383e21
 +};
 -- 
 2.34.1
+
 

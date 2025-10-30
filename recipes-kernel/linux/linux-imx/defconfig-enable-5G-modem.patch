@@ -1,21 +1,21 @@
-From 0d8eb93fc17b34d188ddfd23b2b611313de97f54 Mon Sep 17 00:00:00 2001
-From: Qiang Li <qiang.li@nxp.com>
-Date: Wed, 29 Oct 2025 11:18:20 +0900
-Subject: [PATCH 3/5] LF-16410-1: arm64: defconfig: Enable 5G modem
+Upstream-Status: Pending [ ] 
+
+From 4974a0d9437ea1a23318b1285fdfc451a00f65a0 Mon Sep 17 00:00:00 2001
+From: Florin Leotescu <florin.leotescu@nxp.com>
+Date: Mon, 13 Oct 2025 14:16:38 +0300
+Subject: [PATCH v2 1/2] LF-16410-1: arm64: defconfig: Enable 5G modem
+Content-Type: text/plain; charset="iso-8859-1"
 
 Enable necessary modem modules
 
 Signed-off-by: Qiang Li <qiang.li@nxp.com>
 Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
-
-Upstream-Status: Pending
-
 ---
  arch/arm64/configs/imx_v8_defconfig | 10 ++++++++++
  1 file changed, 10 insertions(+)
 
 diff --git a/arch/arm64/configs/imx_v8_defconfig b/arch/arm64/configs/imx_v8_defconfig
-index 0e9e6dfe63d0..f727fc156425 100644
+index c26db161c875..38b89ab4dc84 100644
 --- a/arch/arm64/configs/imx_v8_defconfig
 +++ b/arch/arm64/configs/imx_v8_defconfig
 @@ -357,6 +357,15 @@ CONFIG_USB_NET_PLUSB=m
@@ -44,4 +44,5 @@ index 0e9e6dfe63d0..f727fc156425 100644
  CONFIG_USB_EHSET_TEST_FIXTURE=y
 -- 
 2.34.1
+
 
