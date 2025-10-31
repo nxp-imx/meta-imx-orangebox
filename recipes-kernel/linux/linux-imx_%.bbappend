@@ -1,11 +1,3 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-
-SRC_URI:append:mx943-orangebox = "file://Add-5G-modem.patch \
-                                  file://Add-LPUART-KW49-support.patch \
-                                  file://defconfig-enable-5G-modem.patch \
-                                  file://Enable-GNSS-module.patch \
-                                  file://Add-Quantum-supoort.patch"
-
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/kconfig:"
 
 SRC_URI += "file://set_250hz.cfg"
