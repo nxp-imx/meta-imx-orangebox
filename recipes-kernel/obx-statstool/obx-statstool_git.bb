@@ -9,14 +9,14 @@ SRCREV = "3a76c4f3f3c47d935d5bd6d483f6a2bb260d846a"
 do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
 do_compile:prepend(){
-cp -r ${S}/../git/ ${STAGING_KERNEL_DIR}/tools/
-cd ${STAGING_KERNEL_DIR}/tools/git
+    cp -r ${S} ${STAGING_KERNEL_DIR}/tools/
+    cd ${STAGING_KERNEL_DIR}/tools/${BP}
 }
 
 do_install(){
-install -d ${D}${bindir}
-install ${STAGING_KERNEL_DIR}/tools/git/obx_system_stats_d ${D}${bindir}/
-install ${STAGING_KERNEL_DIR}/tools/git/obx_stats_cli ${D}${bindir}/
+    install -d ${D}${bindir}
+    install ${STAGING_KERNEL_DIR}/tools/${BP}/obx_system_stats_d ${D}${bindir}/
+    install ${STAGING_KERNEL_DIR}/tools/${BP}/obx_stats_cli ${D}${bindir}/
 }
 
 INSANE_SKIP:${PN}-dbg += "buildpaths"
