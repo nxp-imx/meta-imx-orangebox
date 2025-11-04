@@ -28,7 +28,7 @@ FILES:${PN} += "\
 do_install() {
     install -d ${D}${bindir}
     install -d ${D}${libdir}/${SHR}
-    cp -r ${WORKDIR}/${BASE}/* ${D}${libdir}/${SHR}/
+    cp -r ${UNPACKDIR}/${BASE}/* ${D}${libdir}/${SHR}/
     cd ${D}${bindir}
     ln -s ../lib/${SHR}/bin/jaotc
     ln -s ../lib/${SHR}/bin/jarsigner
