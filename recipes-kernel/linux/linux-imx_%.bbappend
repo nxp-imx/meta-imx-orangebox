@@ -9,16 +9,16 @@ SRC_URI:append:imx943-orangebox = " \
     file://0006-Add-v2x-dts.patch \
 "
 
-SRC_URI += "file://set_250hz.cfg"
-SRC_URI += "file://enable_tbf.cfg"
-SRC_URI += "file://enable_gpiofs.cfg"
-SRC_URI += "file://enable_usb_eth.cfg"
-SRC_URI += "file://enable_pps_gpio.cfg"
-SRC_URI += "file://enable_usb_serial.cfg"
-SRC_URI += "file://enable_net_bridge.cfg"
-SRC_URI += "file://disable_faulty_battery_driver.cfg"
-SRC_URI += "file://enable_function_tracer.cfg"
-SRC_URI += "file://enable_kmemleak_and_slab_debug.cfg"
+SRC_URI:append:imx8dxl-orangebox = "file://set_250hz.cfg \
+                                    file://enable_tbf.cfg \
+                                    file://enable_gpiofs.cfg \
+                                    file://enable_usb_eth.cfg \
+                                    file://enable_pps_gpio.cfg \
+                                    file://enable_usb_serial.cfg \
+                                    file://enable_net_bridge.cfg \
+                                    file://disable_faulty_battery_driver.cfg \
+                                    file://enable_function_tracer.cfg \
+                                    file://enable_kmemleak_and_slab_debug.cfg"
 
 # kernel configuration fragments
 DELTA_KERNEL_DEFCONFIG += "set_250hz.cfg"
