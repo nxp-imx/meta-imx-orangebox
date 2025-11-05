@@ -25,6 +25,9 @@ DELTA_KERNEL_DEFCONFIG:append:imx8dxl-orangebox = "\
                                                   enable_function_tracer.cfg \
                                                   enable_kmemleak_and_slab_debug.cfg "
 
+LOCALVERSION:imx8dxl-orangebox = "-imx8dxl-orangebox"
+LOCALVERSION:imx943-orangebox  = "-imx943-orangebox"
+
 # enforce copy_defconfig AFTER the patching process
 addtask copy_defconfig after do_patch before do_preconfigure
 addtask merge_delta_config before do_preconfigure after do_copy_defconfig
