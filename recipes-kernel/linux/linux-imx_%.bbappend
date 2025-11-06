@@ -9,7 +9,8 @@ SRC_URI:append:imx943-orangebox = " \
     file://0006-Add-v2x-dts.patch \
 "
 
-SRC_URI:append:imx8dxl-orangebox = "file://set_250hz.cfg \
+SRC_URI:append:imx8dxl-orangebox = " \
+                                    file://set_250hz.cfg \
                                     file://enable_tbf.cfg \
                                     file://enable_gpiofs.cfg \
                                     file://enable_usb_eth.cfg \
@@ -21,16 +22,17 @@ SRC_URI:append:imx8dxl-orangebox = "file://set_250hz.cfg \
                                     file://enable_kmemleak_and_slab_debug.cfg"
 
 # kernel configuration fragments
-DELTA_KERNEL_DEFCONFIG += "set_250hz.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_tbf.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_gpiofs.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_usb_eth.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_pps_gpio.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_usb_serial.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_net_bridge.cfg"
-DELTA_KERNEL_DEFCONFIG += "disable_faulty_battery_driver.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_function_tracer.cfg"
-DELTA_KERNEL_DEFCONFIG += "enable_kmemleak_and_slab_debug.cfg"
+DELTA_KERNEL_DEFCONFIG:append:imx8dxl-orangebox = "\
+                                                  set_250hz.cfg \
+                                                  enable_tbf.cfg \
+                                                  enable_gpiofs.cfg \ 
+                                                  enable_usb_eth.cfg \
+                                                  enable_pps_gpio.cfg \
+                                                  enable_usb_serial.cfg \
+                                                  enable_net_bridge.cfg \
+                                                  disable_faulty_battery_driver.cfg \
+                                                  enable_function_tracer.cfg \
+                                                  enable_kmemleak_and_slab_debug.cfg "
 
 # enforce copy_defconfig AFTER the patching process
 addtask copy_defconfig after do_patch before do_preconfigure
