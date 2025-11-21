@@ -1,9 +1,37 @@
-Upstream-Status: Pending []
+Upstream-Status: Pending  
 
-diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts
---- a/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts	1970-01-01 01:00:00.000000000 +0100
-+++ b/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts	2025-11-04 01:26:26.285830075 +0100
-@@ -0,0 +1,107 @@
+From 8328ad68e3592efaec96c1a915309876dc869f3b Mon Sep 17 00:00:00 2001
+From: Florin Leotescu <florin.leotescu@nxp.com>
+Date: Thu, 6 Nov 2025 13:48:39 +0200
+Subject: [PATCH 1/2] LF-16568 - arm64: dts: imx943 - Enable V2X module
+
+Enable support for V2X module.
+
+Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx943-orangebox-sdv2x.dts  | 105 ++++++++++++++++++
+ 2 files changed, 106 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts
+
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 98b6b62ebd64..28da41089bd0 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -594,6 +594,7 @@ imx943-evk-mqs-dtbs := imx943-evk.dtb imx943-evk-mqs.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-mqs.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-sgmii.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-rpmsg.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-sdv2x.dtb
+ 
+ imx943-evk-pcie1-ep-dtbs := imx943-evk.dtb imx943-evk-pcie1-ep.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-pcie1-ep.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts
+new file mode 100644
+index 000000000000..4fc1fab05ac6
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts
+@@ -0,0 +1,105 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright 2025 NXP
@@ -12,7 +40,7 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts b/arch/arm
 +#include "imx943-orangebox.dts"
 +
 +/*
-+ *pinctrl_eth4 used by enetc2 conflicts with 
++ *pinctrl_eth4 used by enetc2 conflicts with
 + * IMX94_PAD_ETH4_TX_CLK__USDHC3_CLK from pinctrl_usdhc3
 + */
 +&enetc2 {
@@ -67,19 +95,18 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts b/arch/arm
 +};
 +
 +&usdhc3 {
-+	
 +	/*
 +	 * Only enable SDIO2.0 mode as the corresponding GPIO pads are 3.3V, the
 +	 * max frequency is 50MHz.
 +	 */
 +	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_usdhc3>,<&pinctrl_v2x>; 
-+	pinctrl-1 = <&pinctrl_usdhc3>,<&pinctrl_v2x>; 
++	pinctrl-0 = <&pinctrl_usdhc3>,<&pinctrl_v2x>;
++	pinctrl-1 = <&pinctrl_usdhc3>,<&pinctrl_v2x>;
 +	bus-width = <4>;
 +	max-frequency = <100000000>;
 +	cd-gpios = <&gpio5 18 GPIO_ACTIVE_LOW>;
 +	status = "okay";
-+	
++
 +};
 +
 +&scmi_iomuxc {
@@ -103,22 +130,13 @@ diff -Naur a/arch/arm64/boot/dts/freescale/imx943-orangebox-sdv2x.dts b/arch/arm
 +
 +	pinctrl_v2x: v2xgrp {
 +		fsl,pins = <
-+			IMX94_PAD_ETH1_TX_EN__GPIO5_IO18	0x31e /** V2X_CARD_PRSNT_B_3V3, J1/45 */
-+			IMX94_PAD_ETH1_TXD1__GPIO5_IO17		0x31e /** V2X_PMIC_STANBY_3V3,  J1/47 */
-+			IMX94_PAD_ETH1_TXD0__GPIO5_IO16		0x31e /** SXF1800_GPIO0_3V3,    J1/49 */ 
-+			IMX94_PAD_ETH1_TXD3__GPIO5_IO24		0x31e /** SXF1800_GPIO1_3V3,    J1/51 */
++			IMX94_PAD_ETH1_TX_EN__GPIO5_IO18	0x31e /* V2X_CARD_PRSNT_B_3V3*/
++			IMX94_PAD_ETH1_TXD1__GPIO5_IO17		0x31e /* V2X_PMIC_STANBY_3V3 */
++			IMX94_PAD_ETH1_TXD0__GPIO5_IO16		0x31e /* SXF1800_GPIO0_3V3   */
++			IMX94_PAD_ETH1_TXD3__GPIO5_IO24		0x31e /* SXF1800_GPIO1_3V3   */
 +		>;
 +	};
 +};
-+
-diff -Naur a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
---- a/arch/arm64/boot/dts/freescale/Makefile	2025-11-04 13:16:30.475991502 +0100
-+++ b/arch/arm64/boot/dts/freescale/Makefile	2025-11-04 13:18:19.144833052 +0100
-@@ -608,6 +608,7 @@
- dtb-$(CONFIG_ARCH_MXC) += imx943-evk-netc-rpmsg.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-sdv2x.dts
- imx943-orangebox-mic-dtbs := imx943-orangebox.dtb imx943-orangebox-mic.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-mic.dtb
- 
+-- 
+2.25.1
+
