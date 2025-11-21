@@ -7,6 +7,7 @@ SRC_URI:append:imx943-orangebox = " \
     file://0004-LF-16410-2-arm64-dts-imx943-Add-5G-modem.patch \
     file://0005-LF-16409-arm64-dts-imx943-Enable-GNSS-module.patch \
     file://0001-LF-16568-arm64-dts-imx943-Enable-V2X-module.patch \
+    file://0002-LF-16504-arm64-dts-Fix-GNSS-I2C-initialization.patch \
 "
 
 SRC_URI:append:imx8dxl-orangebox = " \

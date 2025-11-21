@@ -1,0 +1,40 @@
+Upstream-Status: Pending
+
+From 7f0431013ab4bb5dd0ca5beba3ca55173c75fe4a Mon Sep 17 00:00:00 2001
+From: Florin Leotescu <florin.leotescu@nxp.com>
+Date: Wed, 19 Nov 2025 10:56:04 +0200
+Subject: [PATCH 2/2] LF-16504: arm64: dts: Fix GNSS I2C initialization
+
+Apply expected GNSS pinmux settings to ensure proper I2C dev init.
+Previous I2C GNSS definition generates I2C dev init failures.
+
+Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx943-orangebox.dts | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx943-orangebox.dts b/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
+index 04cb60a864ad..d32cd2167786 100644
+--- a/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
++++ b/arch/arm64/boot/dts/freescale/imx943-orangebox.dts
+@@ -464,16 +464,9 @@ ptn5150_2: tcpc@3d {
+ 
+ &lpi2c4 {
+ 	clock-frequency = <400000>;
+-	pinctrl-0 = <&pinctrl_lpi2c4>;
++	pinctrl-0 = <&pinctrl_lpi2c4>, <&pinctrl_gnss>;
+ 	pinctrl-names = "default";
+ 	status = "okay";
+-
+-	gnss@42 {
+-		reg = <0x42>;
+-		pinctrl-0 = <&pinctrl_gnss>;
+-		pinctrl-names = "default";
+-		status = "okay";
+-	};
+ };
+ 
+ &lpi2c6 {
+-- 
+2.25.1
+
