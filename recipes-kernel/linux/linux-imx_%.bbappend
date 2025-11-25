@@ -1,4 +1,24 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/kconfig:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/kconfig:${THISDIR}/${PN}"
+
+SRC_URI:append:imx943-orangebox = "${@bb.utils.contains('MACHINE_FEATURES', 'ob2-apps', ' file://0001-imx943-orangebox-dts-update-Makefile-for-qtm-5G-v2x.patch ', '', d)}"
+SRC_URI:append:imx943-orangebox = "${@bb.utils.contains('MACHINE_FEATURES', 'ob2-apps', ' file://cfg/enable_usb_eth.cfg ', '', d)}"
+
+DTS_FILES:imx943-orangebox = " \
+                               file://dts/imx943-orangebox-5G-modem.dts \
+                               file://dts/imx943-orangebox-qtm.dts \
+                               file://dts/imx943-orangebox-sdv2x.dts \
+                               file://dts/imx943-orangebox.dts"
+SRC_URI:append:imx943-orangebox = "${DTS_FILES}"
+
+do_patch:prepend:imx943-orangebox() {
+    echo "Starting to copy DTS files after patching."
+    if [ -n "${DTS_FILES}" ]; then
+        cp ${UNPACKDIR}/dts/*.dts ${S}/arch/arm64/boot/dts/freescale/
+    fi
+}
+
+DELTA_KERNEL_DEFCONFIG:append:imx8dxl-orangebox = "\
+                                                   enable_usb_eth.cfg"
 
 SRC_URI:append:imx8dxl-orangebox = " \
                                     file://set_250hz.cfg \

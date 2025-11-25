@@ -1,0 +1,29 @@
+From cc5b97200611b90eb9f8a40fd5df4a48a67da1b3 Mon Sep 17 00:00:00 2001
+From: Qiang Li <qiang.li@nxp.com>
+Date: Thu, 13 Nov 2025 22:10:37 +0900
+Subject: [PATCH 7/7] imx943 orangebox: dts: update Makefile for qtm, 5G, v2x.
+
+Update dts Makefile for iMX943 OrangeBox.
+
+Upstream-Status: Pending 
+Signed-off-by: Qiang Li <qiang.li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 16ddc9bfeb8d..e5fa7b2305be 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -836,6 +836,10 @@ imx943-orangebox-netc-m33-dtbs := imx943-orangebox.dtb \
+                                  imx943-orangebox-netc-m33.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-netc-m33.dtb
+
++dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-qtm.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-5G-modem.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-sdv2x.dtb
++
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-flexspi-m2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-mqs.dtb
+
