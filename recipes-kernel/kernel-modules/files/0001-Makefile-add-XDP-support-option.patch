@@ -1,0 +1,40 @@
+From 646da7fa71228f9fe69566db094e5b38c75271c8 Mon Sep 17 00:00:00 2001
+From: Prashant Gupta <prashant.gupta_3@nxp.com>
+Date: Tue, 2 Dec 2025 11:34:19 +0530
+Subject: [PATCH] Makefile: add XDP support option
+
+Upstream-Status: Pending []
+
+Enable CONFIG_XDP_SUPPORT and propagate -DXDP_SUPPORT flag for builds requiring XDP functionality.
+
+Signed-off-by: Prashant Gupta <prashant.gupta_3@nxp.com>
+---
+ Makefile | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 783b8c4..991280d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -107,6 +107,8 @@ CONFIG_DUMP_TO_PROC=y
+ 
+ CONFIG_TASKLET_SUPPORT=n
+ 
++#Enable XDP support
++CONFIG_XDP_SUPPORT=y
+ 
+ 
+ #32bit app over 64bit kernel support
+@@ -392,6 +394,9 @@ endif
+ ifeq ($(CONFIG_MAC80211_SUPPORT_MESH),y)
+ 	ccflags-y += -DMAC80211_SUPPORT_MESH
+ endif
++ifeq ($(CONFIG_XDP_SUPPORT), y)
++       ccflags-y += -DXDP_SUPPORT
++endif
+ 
+ #############################################################################
+ # Make Targets
+-- 
+2.43.0
+
