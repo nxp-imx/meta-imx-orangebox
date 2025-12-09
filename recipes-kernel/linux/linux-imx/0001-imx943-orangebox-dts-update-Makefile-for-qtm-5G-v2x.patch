@@ -5,7 +5,7 @@ Subject: [PATCH 7/7] imx943 orangebox: dts: update Makefile for qtm, 5G, v2x.
 
 Update dts Makefile for iMX943 OrangeBox.
 
-Upstream-Status: Pending 
+Upstream-Status: Pending   
 Signed-off-by: Qiang Li <qiang.li@nxp.com>
 ---
  arch/arm64/boot/dts/freescale/Makefile | 3 +++
