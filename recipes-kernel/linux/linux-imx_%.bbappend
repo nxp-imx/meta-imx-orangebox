@@ -18,10 +18,6 @@ do_patch:prepend:imx943-orangebox() {
     fi
 }
 
-DELTA_KERNEL_DEFCONFIG:append:imx943-orangebox = " \
-    enable_usb_eth.cfg \
-"
-
 SRC_URI:append:imx8dxl-orangebox = " \
     file://kconfig/set_250hz.cfg \
     file://kconfig/enable_tbf.cfg \
@@ -35,24 +31,6 @@ SRC_URI:append:imx8dxl-orangebox = " \
     file://kconfig/enable_kmemleak_and_slab_debug.cfg \
 "
 
-# kernel configuration fragments
-DELTA_KERNEL_DEFCONFIG:append:imx8dxl-orangebox = "\
-    set_250hz.cfg \
-    enable_tbf.cfg \
-    enable_gpiofs.cfg \
-    enable_usb_eth.cfg \
-    enable_pps_gpio.cfg \
-    enable_usb_serial.cfg \
-    enable_net_bridge.cfg \
-    disable_faulty_battery_driver.cfg \
-    enable_function_tracer.cfg \
-    enable_kmemleak_and_slab_debug.cfg \
-"
-
 LOCALVERSION:imx8dxl-orangebox = "-imx8dxl-orangebox"
 LOCALVERSION:imx943-orangebox  = "-imx943-orangebox"
-
-# enforce copy_defconfig AFTER the patching process
-addtask copy_defconfig after do_patch before do_preconfigure
-addtask merge_delta_config before do_preconfigure after do_copy_defconfig
 
