@@ -31,6 +31,6 @@ SRC_URI:append:imx8dxl-orangebox = " \
     file://kconfig/enable_kmemleak_and_slab_debug.cfg \
 "
 
-LOCALVERSION:imx8dxl-orangebox = "-imx8dxl-orangebox"
-LOCALVERSION:imx943-orangebox  = "-imx943-orangebox"
+LOCALVERSION:imx8dxl-orangebox = "-imx8dxl-ob"
+LOCALVERSION:imx943-orangebox  = "-imx943-ob2"
 
