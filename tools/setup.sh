@@ -28,7 +28,6 @@ fi
 EULA=$EULA DISTRO=$DISTRO MACHINE=$MACHINE . imx-setup-release.sh -b $@
 
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-imx-orangebox \"" >> conf/bblayers.conf
-echo "BBLAYERS += \" \${BSPDIR}/sources/meta-imx-scfw \"" >> conf/bblayers.conf
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-nxp-web-ui \"" >> conf/bblayers.conf
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-openembedded/meta-webserver \"" >> conf/bblayers.conf
 
