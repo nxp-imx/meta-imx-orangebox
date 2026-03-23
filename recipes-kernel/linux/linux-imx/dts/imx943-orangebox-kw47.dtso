@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2026 NXP
+ */
+
+#include "imx94-pinfunc.h"
+
+/dts-v1/;
+/plugin/;
+
+&lpuart5 {
+	/* KW47 */
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart5>;
+	status = "okay";
+};
+
+&scmi_iomuxc {
+	pinctrl_uart5: uart5grp {
+		fsl,pins = <
+			IMX94_PAD_GPIO_IO00__LPUART5_TX		0x30e
+			IMX94_PAD_GPIO_IO01__LPUART5_RX		0x30e
+		>;
+	};
+};

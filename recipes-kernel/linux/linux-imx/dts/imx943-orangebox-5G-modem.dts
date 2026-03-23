@@ -81,6 +81,6 @@
 
 &scmi_iomuxc {
 	mdm_wowwan: wwan {
-		fsl,pins = <IMX94_PAD_ETH1_RXD3__GPIO5_IO26		0x31e>;
+		fsl,pins = <IMX94_PAD_ETH1_RXD3__GPIO5_IO26		0x30e>;
 	};
 };

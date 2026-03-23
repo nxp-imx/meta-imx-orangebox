@@ -1,0 +1,97 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2025-2026 NXP
+ */
+
+#include <dt-bindings/gpio/gpio.h>
+#include "imx94-clock.h"
+#include "imx94-pinfunc.h"
+
+/dts-v1/;
+/plugin/;
+
+&{/} {
+	radio_codec: radio_codec {
+		compatible = "linux,bt-sco";
+		#sound-dai-cells = <1>;
+    };
+
+    sound-radio {
+        compatible = "simple-audio-card";
+        simple-audio-card,name = "qtm-radio-card";
+		simple-audio-card,format = "dsp_a";
+		simple-audio-card,bitclock-inversion;
+		simple-audio-card,frame-master = <&btcpu>;
+		simple-audio-card,bitclock-master = <&btcpu>;
+
+		radiocpu: simple-audio-card,cpu {
+			sound-dai = <&sai1>;
+			dai-tdm-slot-num = <2>;
+			dai-tdm-slot-width = <16>;
+		};
+
+		simple-audio-card,codec {
+			sound-dai = <&radio_codec 1>;
+		};
+	};
+};
+
+&mqs1 {
+	status = "disabled";
+};
+
+&lpspi8 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	cs-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+	num-cs = <1>;
+	pinctrl-0 = <&pinctrl_lpspi8>;
+	pinctrl-names = "default";
+	status = "okay";
+
+	spidev1: spi@0 {
+		compatible = "rohm,dh2228fv";
+		reg = <0>;
+		spi-max-frequency = <12000000>;
+	};
+};
+
+&sai1 {
+	#sound-dai-cells = <0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_sai1>;
+	assigned-clocks = <&scmi_clk IMX94_CLK_AUDIOPLL1_VCO>,
+			<&scmi_clk IMX94_CLK_AUDIOPLL2_VCO>,
+			<&scmi_clk IMX94_CLK_AUDIOPLL1>,
+			<&scmi_clk IMX94_CLK_AUDIOPLL2>,
+			<&scmi_clk IMX94_CLK_SAI1>;
+	assigned-clock-parents = <0>, <0>, <0>, <0>,
+			<&scmi_clk IMX94_CLK_AUDIOPLL1>;
+	assigned-clock-rates = <3932160000>,
+			<3612672000>, <393216000>,
+			<361267200>, <24576000>;
+	fsl,sai-mclk-direction-output;
+	status = "okay";
+};
+
+&scmi_iomuxc {
+	pinctrl_lpspi8: lpspi8grp {
+		fsl,pins = <
+			IMX94_PAD_GPIO_IO12__GPIO2_IO12			0x38e
+			IMX94_PAD_GPIO_IO13__LPSPI8_SIN			0x38e
+			IMX94_PAD_GPIO_IO14__LPSPI8_SOUT		0x38e
+			IMX94_PAD_GPIO_IO15__LPSPI8_SCK			0x38e
+		>;
+	};
+
+	pinctrl_sai1: sai1grp {
+		fsl,pins = <
+			IMX94_PAD_SAI1_RXD0__SAI1_MCLK			0x30e
+			IMX94_PAD_SAI1_TXC__SAI1_TX_BCLK		0x30e
+			IMX94_PAD_SAI1_TXFS__SAI1_TX_SYNC		0x30e
+			IMX94_PAD_SAI1_RXD0__SAI1_RX_DATA0		0x30e
+			IMX94_PAD_SAI1_TXD0__SAI1_TX_DATA0 		0x30e
+		>;
+	};
+
+};

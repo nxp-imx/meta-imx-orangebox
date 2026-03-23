@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 /*
- * Copyright 2025 NXP
+ * Copyright 2025-2026 NXP
  */
 
-#include "imx943-orangebox.dts"
+#include <dt-bindings/gpio/gpio.h>
+#include "imx94-pinfunc.h"
 
-/ {
+/dts-v1/;
+/plugin/;
+
+&{/} {
 	usdhc3_pwrseq: usdhc3_pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		reset-gpios = <&pcal6524 0 GPIO_ACTIVE_LOW>,  /* IMX_V2X_RST_B_3V3 */
@@ -105,10 +109,10 @@
 
 	pinctrl_v2x: v2xgrp {
 		fsl,pins = <
-			IMX94_PAD_ETH1_TX_EN__GPIO5_IO18	0x31e /* V2X_CARD_PRSNT_B_3V3*/
-			IMX94_PAD_ETH1_TXD1__GPIO5_IO17		0x31e /* V2X_PMIC_STANBY_3V3 */
-			IMX94_PAD_ETH1_TXD0__GPIO5_IO16		0x31e /* SXF1800_GPIO0_3V3   */
-			IMX94_PAD_ETH1_TXD3__GPIO5_IO24		0x31e /* SXF1800_GPIO1_3V3   */
+			IMX94_PAD_ETH1_TX_EN__GPIO5_IO18	0x30e /* V2X_CARD_PRSNT_B_3V3*/
+			IMX94_PAD_ETH1_TXD1__GPIO5_IO17		0x30e /* V2X_PMIC_STANBY_3V3 */
+			IMX94_PAD_ETH1_TXD0__GPIO5_IO16		0x30e /* SXF1800_GPIO0_3V3   */
+			IMX94_PAD_ETH1_TXD3__GPIO5_IO24		0x30e /* SXF1800_GPIO1_3V3   */
 		>;
 	};
 };
