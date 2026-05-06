@@ -1,9 +1,10 @@
-i.MX Linux Yocto Project BSP 6.12.20-2.0.0 OrangeBox
+i.MX Linux Yocto Project BSP 6.18.20-2.0.0 OrangeBox
 =============================================================
 
 The following boards were tested in this release:
 
-- NXP i.MX 8DXL EVK  REV B0
+- NXP i.MX 943 OrangeBox REV A0
+- NXP i.MX 943 OrangeBox REV A1
 
 Quick Start Guide
 -----------------
@@ -11,7 +12,7 @@ See the i.MX Yocto Project User's Guide for instructions on installing repo.
 
 First install the i.MX Linux BSP repo:
 ```
-$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-walnascar -m imx-6.12.20-2.0.0_orangebox.xml
+$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-wrynose -m imx-6.18.20-2.0.0_orangebox.xml
 ```
 
 Download the Yocto Project Layers:
