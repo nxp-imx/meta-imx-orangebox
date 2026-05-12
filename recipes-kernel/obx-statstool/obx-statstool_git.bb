@@ -8,7 +8,7 @@ SRCREV = "3a76c4f3f3c47d935d5bd6d483f6a2bb260d846a"
 
 do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
-do_configure:prepend() {
+do_configure() {
     # Copy source to kernel tools directory
     rm -rf ${STAGING_KERNEL_DIR}/tools/${BPN}
     cp -r ${S} ${STAGING_KERNEL_DIR}/tools/${BPN}

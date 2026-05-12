@@ -8,7 +8,7 @@ SRCREV = "74fac05c0fcb3ef7b478571427f76c12f1f0d416"
 
 do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
-do_configure:prepend() {
+do_configure() {
     # Copy source to kernel tools directory
     rm -rf ${STAGING_KERNEL_DIR}/tools/obx_imx
     cp -r ${S} ${STAGING_KERNEL_DIR}/tools/obx_imx
