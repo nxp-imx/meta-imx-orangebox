@@ -10,11 +10,12 @@ do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
 do_configure:prepend() {
     # Copy source to kernel tools directory
+    rm -rf ${STAGING_KERNEL_DIR}/tools/${BPN}
     cp -r ${S} ${STAGING_KERNEL_DIR}/tools/${BPN}
 }
 
 do_compile() {
-    oe_runmake -C ${STAGING_KERNEL_DIR}/tools/${BPN}
+    oe_runmake -C ${STAGING_KERNEL_DIR}/tools/${BPN} srctree=${STAGING_KERNEL_DIR}
 }
 
 do_install() {

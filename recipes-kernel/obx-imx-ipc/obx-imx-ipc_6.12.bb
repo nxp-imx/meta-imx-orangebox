@@ -10,11 +10,12 @@ do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
 do_configure:prepend() {
     # Copy source to kernel tools directory
+    rm -rf ${STAGING_KERNEL_DIR}/tools/obx_imx
     cp -r ${S} ${STAGING_KERNEL_DIR}/tools/obx_imx
 }
 
 do_compile() {
-    oe_runmake -C ${STAGING_KERNEL_DIR}/tools/obx_imx
+    oe_runmake -C ${STAGING_KERNEL_DIR}/tools/obx_imx srctree=${STAGING_KERNEL_DIR}
 }
 
 do_install(){
