@@ -8,16 +8,19 @@ SRCREV = "74fac05c0fcb3ef7b478571427f76c12f1f0d416"
 
 do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
-do_compile:prepend(){
-install -d ${STAGING_KERNEL_DIR}/tools/obx_imx
-cp -r ${S}/* ${STAGING_KERNEL_DIR}/tools/obx_imx
-cd ${STAGING_KERNEL_DIR}/tools/obx_imx
+do_configure:prepend() {
+    # Copy source to kernel tools directory
+    cp -r ${S} ${STAGING_KERNEL_DIR}/tools/obx_imx
+}
+
+do_compile() {
+    oe_runmake -C ${STAGING_KERNEL_DIR}/tools/obx_imx
 }
 
 do_install(){
-install -d ${D}${bindir}
-install ${STAGING_KERNEL_DIR}/tools/obx_imx/obx_imx_s32k_spi_ipc_d ${D}${bindir}/
-install ${STAGING_KERNEL_DIR}/tools/obx_imx/obx_spi_ipc_cli ${D}${bindir}/
+    install -d ${D}${bindir}
+    install -m 0755 ${STAGING_KERNEL_DIR}/tools/obx_imx/obx_imx_s32k_spi_ipc_d ${D}${bindir}/
+    install -m 0755 ${STAGING_KERNEL_DIR}/tools/obx_imx/obx_spi_ipc_cli ${D}${bindir}/
 }
 
 INSANE_SKIP:${PN}-dbg += "buildpaths"
