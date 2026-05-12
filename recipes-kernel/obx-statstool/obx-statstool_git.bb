@@ -8,15 +8,19 @@ SRCREV = "3a76c4f3f3c47d935d5bd6d483f6a2bb260d846a"
 
 do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
-do_compile:prepend(){
-    cp -r ${S} ${STAGING_KERNEL_DIR}/tools/
-    cd ${STAGING_KERNEL_DIR}/tools/${BP}
+do_configure:prepend() {
+    # Copy source to kernel tools directory
+    cp -r ${S} ${STAGING_KERNEL_DIR}/tools/${BPN}
 }
 
-do_install(){
+do_compile() {
+    oe_runmake -C ${STAGING_KERNEL_DIR}/tools/${BPN}
+}
+
+do_install() {
     install -d ${D}${bindir}
-    install ${STAGING_KERNEL_DIR}/tools/${BP}/obx_system_stats_d ${D}${bindir}/
-    install ${STAGING_KERNEL_DIR}/tools/${BP}/obx_stats_cli ${D}${bindir}/
+    install -m 0755 ${STAGING_KERNEL_DIR}/tools/${BPN}/obx_system_stats_d ${D}${bindir}/
+    install -m 0755 ${STAGING_KERNEL_DIR}/tools/${BPN}/obx_stats_cli ${D}${bindir}/
 }
 
 INSANE_SKIP:${PN}-dbg += "buildpaths"
