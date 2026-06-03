@@ -1,51 +1,57 @@
-From 3d7ca12f7e795555b2f42d393dc8834a1e4baf33 Mon Sep 17 00:00:00 2001
+From 65edae6184ba1435b68686575289e606bb4d167c Mon Sep 17 00:00:00 2001
 From: Qiang Li <qiang.li@nxp.com>
-Date: Mon, 9 Mar 2026 15:34:48 +0900
+Date: Wed, 3 Jun 2026 18:36:33 +0900
 Subject: [PATCH] imx943 orangebox: dts: update Makefile for qtm, 5G, v2x,
- rpmsg.
+ rpmag, low power.
 
 Update dts Makefile for iMX943 OrangeBox Applications.
+Sync to LF-6.18.20_2.0.0.
 
 Upstream-Status: Pending
 Signed-off-by: Qiang Li <qiang.li@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile | 29 ++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ arch/arm64/boot/dts/freescale/Makefile | 34 ++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index aa3cfdf1aafc..60fd308f3cde 100644
+index bb6bc733c7e5..0627f4acd0c8 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -868,6 +868,35 @@ imx943-orangebox-netc-m33-dtbs := imx943-orangebox.dtb \
+@@ -889,6 +889,40 @@ imx943-orangebox-netc-m33-dtbs := imx943-orangebox.dtb \
  				  imx943-orangebox-netc-m33.dtbo
  dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-netc-m33.dtb
  
 +imx943-orangebox-gnss-dtbs := imx943-orangebox.dtb \
 +			      imx943-orangebox-kw47.dtbo \
-+			      imx943-orangebox-gnss.dtbo
++			      imx943-orangebox-gnss.dtbo \
++			      imx943-orangebox-lowpower.dtbo
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-gnss.dtb
 +
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-5G-modem.dtb
 +imx943-orangebox-5G-modem-gnss-dtbs := imx943-orangebox-5G-modem.dtb \
 +				       imx943-orangebox-kw47.dtbo \
-+				       imx943-orangebox-gnss.dtbo
++				       imx943-orangebox-gnss.dtbo \
++				       imx943-orangebox-lowpower.dtbo
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-5G-modem-gnss.dtb
 +
 +imx943-orangebox-qtm-dtbs := imx943-orangebox.dtb \
 +			     imx943-orangebox-kw47.dtbo \
 +			     imx943-orangebox-gnss.dtbo \
++			     imx943-orangebox-lowpower.dtbo \
 +			     imx943-orangebox-qtm.dtbo
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-qtm.dtb
 +
 +imx943-orangebox-sdv2x-dtbs := imx943-orangebox.dtb \
 +			       imx943-orangebox-kw47.dtbo \
 +			       imx943-orangebox-gnss.dtbo \
++			       imx943-orangebox-lowpower.dtbo \
 +			       imx943-orangebox-sdv2x.dtbo
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-sdv2x.dtb
 +
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-rpmsg.dtb
 +imx943-orangebox-rpmsg-dtbs := imx943-orangebox.dtb \
 +			       imx943-orangebox-gnss.dtbo \
++			       imx943-orangebox-lowpower.dtbo \
 +			       imx943-orangebox-rpmsg.dtbo
 +dtb-$(CONFIG_ARCH_MXC) += imx943-orangebox-rpmsg.dtb
 +

@@ -10,6 +10,7 @@ DTS_FILES:append:imx943-orangebox = "${@bb.utils.contains('MACHINE_FEATURES', 'o
     file://dts/imx943-orangebox-kw47.dtso \
     file://dts/imx943-orangebox-gnss.dtso \
     file://dts/imx943-orangebox-rpmsg.dtso \
+    file://dts/imx943-orangebox-lowpower.dtso \
     ', '', d)}"
 
 SRC_URI:append:imx943-orangebox = "${@bb.utils.contains('MACHINE_FEATURES', 'ob2-apps', ' ${DTS_FILES}', '', d)}"
