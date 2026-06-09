@@ -12,8 +12,8 @@
 
 &{/} {
 	radio_codec: radio_codec {
-		compatible = "linux,bt-sco";
-		#sound-dai-cells = <1>;
+		compatible = "linux,spdif-dir";
+		#sound-dai-cells = <0>;
     };
 
     sound-radio {
@@ -21,17 +21,17 @@
         simple-audio-card,name = "qtm-radio-card";
 		simple-audio-card,format = "dsp_a";
 		simple-audio-card,bitclock-inversion;
-		simple-audio-card,frame-master = <&btcpu>;
-		simple-audio-card,bitclock-master = <&btcpu>;
+		simple-audio-card,frame-master = <&radiocodec>;
+		simple-audio-card,bitclock-master = <&radiocodec>;
 
-		radiocpu: simple-audio-card,cpu {
+		simple-audio-card,cpu {
 			sound-dai = <&sai1>;
 			dai-tdm-slot-num = <2>;
 			dai-tdm-slot-width = <16>;
 		};
 
-		simple-audio-card,codec {
-			sound-dai = <&radio_codec 1>;
+		radiocodec: simple-audio-card,codec {
+			sound-dai = <&radio_codec>;
 		};
 	};
 };
